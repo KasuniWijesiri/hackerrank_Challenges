@@ -3,36 +3,31 @@ formats: US, Indian, Chinese, and French. The input is a double-precision number
 represents an amount of money, and you need to use the NumberFormat class in Java to properly
 format that number according to the currency rules of each country.*/
 
-import java.text.NumberFormat;
-import java.util.Locale;
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
 
 public class CurrencyChallenge {
+
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double payment = scanner.nextDouble();
+        scanner.close();
 
-        // Sample input, you can replace it with your own value
-        double payment = 12324.134;
+        // Write your code here.
+        //public Locale(String en,String India);
 
-        // Creating a NumberFormat instance for US
-        NumberFormat usFormat = NumberFormat.getCurrencyInstance(Locale.US);
-        String us = usFormat.format(payment);
+        NumberFormat us = NumberFormat.getCurrencyInstance(Locale.US);
+        NumberFormat india = NumberFormat.getCurrencyInstance(new Locale("en","IN"));
+        NumberFormat china = NumberFormat.getCurrencyInstance(Locale.CHINA);
+        NumberFormat france = NumberFormat.getCurrencyInstance(Locale.FRANCE);
 
-        // Creating a custom Locale for India as Java doesn't have a built-in Locale for India
-        Locale indiaLocale = new Locale("en", "IN");
-        NumberFormat indiaFormat = NumberFormat.getCurrencyInstance(indiaLocale);
-        String india = indiaFormat.format(payment);
 
-        // Creating a NumberFormat instance for China
-        NumberFormat chinaFormat = NumberFormat.getCurrencyInstance(Locale.CHINA);
-        String china = chinaFormat.format(payment);
-
-        // Creating a NumberFormat instance for France
-        NumberFormat franceFormat = NumberFormat.getCurrencyInstance(Locale.FRANCE);
-        String france = franceFormat.format(payment);
-
-        // Output the results
-        System.out.println("US: " + us);
-        System.out.println("India: " + india);
-        System.out.println("China: " + china);
-        System.out.println("France: " + france);
+        System.out.println("US: " + us.format(payment));
+        System.out.println("India: " + india.format(payment));
+        System.out.println("China: " + china.format(payment));
+        System.out.println("France: " + france.format(payment));
     }
 }
